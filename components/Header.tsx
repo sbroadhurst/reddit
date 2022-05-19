@@ -6,6 +6,8 @@ import {
   HomeIcon,
   SearchIcon,
   MenuIcon,
+  SunIcon,
+  MoonIcon,
 } from '@heroicons/react/solid'
 import {
   BellIcon,
@@ -16,6 +18,11 @@ import {
   SpeakerphoneIcon,
   VideoCameraIcon,
 } from '@heroicons/react/outline'
+import {useTheme} from 'next-themes'
+import * as darkLogo from '../public/reddit-darkmode.png'
+import * as lightLogo from '../public/reddit-lightmode.png'
+
+
 
 const iconMenu = (
   <>
@@ -27,18 +34,21 @@ const iconMenu = (
     <BellIcon className="icon" />
     <PlusIcon className="icon" />
     <SpeakerphoneIcon className="icon" />
+    
   </>
 )
 
 function Header() {
   const [open, setOpen] = useState(false)
+  const {theme, setTheme} = useTheme()
+
 
   return (
-    <div className="sticky top-0 z-50 flex bg-white px-4 py-2 shadow-sm">
+    <div className="sticky top-0 z-50 flex px-4 py-2 shadow-lg shadow-[#FF4500]">
       <div className="relative h-10 w-20 flex-shrink-0 cursor-pointer">
         <Image
           objectFit="contain"
-          src="https://links.papareact.com/fqy"
+          src={theme==='dark'? darkLogo : lightLogo} 
           layout="fill"
         />
       </div>
@@ -61,6 +71,7 @@ function Header() {
 
       <div className="mx-5 hidden items-center space-x-2 text-gray-500 lg:inline-flex">
         {iconMenu}
+        {theme==='dark' ? <MoonIcon className='icon' onClick={() => setTheme('light')}/> : <SunIcon className='icon' onClick={() => setTheme('dark')}/>}
       </div>
 
       <div className="ml-5 flex items-center lg:hidden">
