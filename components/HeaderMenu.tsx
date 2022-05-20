@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Box from '@mui/material/Box'
 import Avatar from '@mui/material/Avatar'
 import Menu from '@mui/material/Menu'
@@ -11,9 +11,12 @@ import { CogIcon, UserAddIcon } from '@heroicons/react/solid'
 import { LogoutIcon } from '@heroicons/react/outline'
 import { SignInIcon } from '../signInIcon'
 
+import { signIn, signOut, useSession } from 'next-auth/react'
+import UserAvatar from './UserAvatar'
+
 export default function HeaderMenu() {
+  const { data: session } = useSession()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-  const [loggedIn, setLoggedIn] = useState(false)
   const open = Boolean(anchorEl)
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
@@ -23,7 +26,7 @@ export default function HeaderMenu() {
   }
   return (
     <React.Fragment>
-      {loggedIn ? (
+      {session ? (
         <Box
           sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}
         >
@@ -36,12 +39,15 @@ export default function HeaderMenu() {
               aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
             >
-              <Avatar sx={{ width: 32, height: 32 }}>S</Avatar>
+              <UserAvatar />
             </IconButton>
           </Tooltip>
         </Box>
       ) : (
-        <div className="flex cursor-pointer items-center space-x-2 border border-gray-100 p-2">
+        <div
+          onClick={() => signIn()}
+          className="flex cursor-pointer items-center space-x-2 border border-gray-100 p-2"
+        >
           <div className="relative h-6 w-6 flex-shrink-0">{SignInIcon}</div>
           <p className="text-gray-400">Sign In</p>
         </div>
@@ -88,7 +94,7 @@ export default function HeaderMenu() {
           <Avatar /> My account
         </MenuItem>
         <Divider />
-        <MenuItem>
+        <MenuItem onClick={() => console.log(session)}>
           <ListItemIcon>
             <UserAddIcon className="icon" />
           </ListItemIcon>
@@ -100,7 +106,7 @@ export default function HeaderMenu() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={() => signOut()}>
           <ListItemIcon>
             <LogoutIcon className="icon" />
           </ListItemIcon>

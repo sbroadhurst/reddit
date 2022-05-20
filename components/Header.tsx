@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React from 'react'
 
 import {
   ChevronDownIcon,
@@ -36,7 +36,6 @@ const iconMenu = (
 )
 
 function Header() {
-  const [open, setOpen] = useState(false)
   const { theme, setTheme } = useTheme()
 
   return (
@@ -78,7 +77,6 @@ function Header() {
 
       <div className="ml-5 flex items-center">
         <HeaderMenu />
-        {open ? console.log('open') : console.log('closed')}
       </div>
     </div>
   )
