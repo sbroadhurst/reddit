@@ -7,6 +7,7 @@ import {
   SearchIcon,
   SunIcon,
   MoonIcon,
+  UserAddIcon,
 } from '@heroicons/react/solid'
 import {
   BellIcon,
@@ -21,6 +22,7 @@ import { useTheme } from 'next-themes'
 import * as darkLogo from '../public/reddit-darkmode.png'
 import * as lightLogo from '../public/reddit-lightmode.png'
 import HeaderMenu from './HeaderMenu'
+import { Avatar } from '@mui/material'
 
 const iconMenu = (
   <>
@@ -47,6 +49,9 @@ function Header() {
           src={theme === 'dark' ? darkLogo : lightLogo}
           layout="fill"
         />
+        {/* <Avatar sx={{ backgroundColor: '#FF4500', height: 32, width: 32 }}>
+          <UserAddIcon />
+        </Avatar> */}
       </div>
 
       <div className="mx-7 flex items-center xl:min-w-[300px]">

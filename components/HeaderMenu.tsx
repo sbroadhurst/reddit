@@ -39,7 +39,7 @@ export default function HeaderMenu() {
               aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
             >
-              <UserAvatar />
+              <UserAvatar large />
             </IconButton>
           </Tooltip>
         </Box>
