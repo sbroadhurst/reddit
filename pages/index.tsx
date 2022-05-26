@@ -13,10 +13,10 @@ const Home: NextPage = () => {
       limit: 10,
     },
   })
-  // const subreddits: Subreddit[] = data?.getSubredditListLimit
-  const subreddits: Subreddit[] = [
-    { created_at: 'date', id: 2, topic: 'testTopic' },
-  ]
+  const subreddits: Subreddit[] = data?.getSubredditListLimit
+  // const subreddits: Subreddit[] = [
+  //   { created_at: 'date', id: 2, topic: 'testTopic' },
+  // ]
 
   return (
     <div className="mx-auto my-7 max-w-5xl">
