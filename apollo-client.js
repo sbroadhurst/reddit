@@ -3,7 +3,7 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client'
 
 const client = new ApolloClient({
-  uri: `${process.env.GRAPHQL_LINK}`,
+  uri: `https://raipur.stepzen.net/api/fallacious-maltese/__graphql`,
   headers: {
     Authorization: `Apikey ${process.env.NEXT_PUBLIC_STEPZEN_KEY}`,
   },
