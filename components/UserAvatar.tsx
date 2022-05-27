@@ -5,15 +5,15 @@ import { UserIcon } from '@heroicons/react/solid'
 
 type Props = {
   seed?: string
-  large?: boolean
+  diameter: number
 }
 
-function UserAvatar({ seed, large }: Props) {
+function UserAvatar({ seed, diameter }: Props) {
   const { data: session } = useSession()
   return (
     <div>
       {session ? (
-        <Avatar sx={{ width: large ? 32 : 20, height: large ? 32 : 20 }}>
+        <Avatar sx={{ width: diameter, height: diameter }}>
           {session.user?.image && !seed
             ? session.user.image
             : session.user?.name && !seed

@@ -4,7 +4,6 @@ import PostBox from '../components/PostBox'
 import Feed from '../components/Feed'
 import { useQuery } from '@apollo/client'
 import { GET_SUBREDDITS_WITH_LIMIT } from '../graphql/queries'
-import { offsetLimitPagination } from '@apollo/client/utilities'
 import SubredditRow from '../components/SubredditRow'
 
 const Home: NextPage = () => {

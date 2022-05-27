@@ -10,10 +10,10 @@ function Subreddit() {
   } = useRouter()
   return (
     <div className={`h-24 bg-red-400 p-8`}>
-      <div className="-mx-8 mt-10 bg-white">
+      <div className="-mx-8 mt-10 bg-white dark:bg-zinc-900">
         <div className="mx-auto flex max-w-5xl items-center space-x-4 pb-3">
-          <div className="mt-5">
-            <UserAvatar seed={topic as string} large />
+          <div className="-mt-10">
+            <UserAvatar seed={topic as string} diameter={50} />
           </div>
 
           <div className="py-2">

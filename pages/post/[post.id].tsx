@@ -98,7 +98,7 @@ function PostPage() {
             >
               <hr className="absolute top-10 left-7 z-0 h-16 border" />
               <div className="z-50">
-                <UserAvatar seed={comment.username} />
+                <UserAvatar seed={comment.username} diameter={20} />
               </div>
 
               <div className="flex flex-col">
