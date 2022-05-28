@@ -118,7 +118,7 @@ function PostBox({ subreddit }: Props) {
     >
       <div className="flex items-center space-x-3">
         {/* Avatar */}
-        <UserAvatar />
+        <UserAvatar diameter={20} />
         <input
           {...register('postTitle', { required: true })}
           disabled={!session}
