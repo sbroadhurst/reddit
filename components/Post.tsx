@@ -43,7 +43,7 @@ function Post({ post }: Props) {
     }
 
     if (vote && isUpvote) return
-    if (vote == false && !isUpvote) return
+    if (vote === false && !isUpvote) return
 
     console.log('voting...', isUpvote)
     const {
@@ -113,7 +113,7 @@ function Post({ post }: Props) {
         <div className="flex flex-col">
           <div className="p-3 pb-1">
             <div className="flex items-center space-x-2 ">
-              <UserAvatar seed={post.subreddit[0].topic} diameter={20} />
+              <UserAvatar seed={post.subreddit[0]?.topic} diameter={20} />
               <p className="text-xs text-gray-400">
                 <Link href={`/subreddit/${post.subreddit[0]?.topic}`}>
                   <span className="font-bold text-black hover:text-blue-400 hover:underline dark:text-white dark:hover:text-blue-400">

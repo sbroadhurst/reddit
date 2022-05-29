@@ -18,7 +18,7 @@ function PostPage() {
   const router = useRouter()
   const { data: session } = useSession()
   const [addComment] = useMutation(ADD_COMMENT, {
-    refetchQueries: [GET_POST_BY_POST_ID, 'getPostListByPostId'],
+    refetchQueries: [GET_POST_BY_POST_ID, 'getPostByPostId'],
   })
 
   const { loading, error, data } = useQuery(GET_POST_BY_POST_ID, {
@@ -28,6 +28,7 @@ function PostPage() {
   })
 
   const post: Post = data?.getPostListByPostId
+  console.log(post)
 
   const {
     register,
@@ -59,7 +60,7 @@ function PostPage() {
     <div className="mx-auto my-7 max-w-5xl">
       <Post post={post} />
 
-      <div className="-mt-1 rounded-b-md border border-t-0 border-gray-300 bg-white p-5 pl-16">
+      <div className="-mt-1 rounded-b-md border border-t-0 border-gray-300  p-5 pl-16">
         <p className="text-sm">
           Comment as <span className="text-red-500">{session?.user?.name}</span>
         </p>
@@ -88,10 +89,9 @@ function PostPage() {
           </button>
         </form>
 
-        <div className="border-top-0 -m-5 rounded-b-md border border-green-300 bg-white py-5 px-10">
+        <div className="border-top-0 y-5 -m-5 rounded-b-md  px-10">
           <hr className="py-2" />
-          {/* Comment type not working */}
-          {post?.comments.map((comment: any) => (
+          {post?.comments?.map((comment: any) => (
             <div
               key={comment.id}
               className="relative flex items-center space-x-2 space-y-5"
