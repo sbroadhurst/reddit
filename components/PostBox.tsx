@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import UserAvatar from './UserAvatar'
 import { useSession } from 'next-auth/react'
 import { LinkIcon, PhotographIcon } from '@heroicons/react/outline'
@@ -33,7 +33,8 @@ function PostBox({ subreddit }: Props) {
     setValue,
     handleSubmit,
     watch,
-    formState: { errors },
+    reset,
+    formState: { errors, isSubmitSuccessful },
   } = useForm<FormData>()
 
   const onSubmit = handleSubmit(async (formData) => {
@@ -99,8 +100,6 @@ function PostBox({ subreddit }: Props) {
       }
 
       // after post has been added
-      setValue
-
       toast.success('New Post Created!', {
         id: notification,
       })
@@ -110,6 +109,16 @@ function PostBox({ subreddit }: Props) {
       })
     }
   })
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset({
+        postBody: undefined,
+        postImage: undefined,
+        subreddit: undefined,
+      })
+    }
+  }, [isSubmitSuccessful])
 
   return (
     <form
@@ -145,7 +154,7 @@ function PostBox({ subreddit }: Props) {
           <div className="flex items-center px-2">
             <p className="min-w-[90x]">Body</p>
             <input
-              className="m-2 flex-1 bg-blue-50 p-2 outline-none"
+              className="m-2 flex-1 bg-blue-50 p-2 outline-none dark:text-black"
               {...register('postBody')}
               type="text"
               placeholder="Text (optional)"
@@ -157,7 +166,7 @@ function PostBox({ subreddit }: Props) {
             <div className="flex items-center px-2">
               <p className="min-w-[90x]">Subreddit</p>
               <input
-                className="m-2 flex-1 bg-blue-50 p-2 outline-none"
+                className="m-2 flex-1 bg-blue-50 p-2 outline-none dark:text-black"
                 {...register('subreddit', { required: true })}
                 type="text"
                 placeholder="i.e. reactjs"
@@ -170,10 +179,10 @@ function PostBox({ subreddit }: Props) {
             <div className="flex items-center px-2">
               <p className="min-w-[90x]">Image</p>
               <input
-                className="m-2 flex-1 bg-blue-50 p-2 outline-none"
+                className="m-2 flex-1 bg-blue-50 p-2 outline-none dark:text-black"
                 {...register('postImage')}
                 type="text"
-                placeholder="Optional..."
+                placeholder="Optional... Enter an image URL"
               />
             </div>
           )}
