@@ -14,11 +14,13 @@ function UserAvatar({ seed, diameter }: Props) {
     <div>
       {session ? (
         <Avatar sx={{ width: diameter, height: diameter }}>
-          {session.user?.image && !seed
-            ? session.user.image
-            : session.user?.name && !seed
-            ? session.user.name.charAt(0).toUpperCase()
-            : seed}
+          {session.user?.image && !seed ? (
+            <img src={session.user.image} alt="profile" />
+          ) : session.user?.name && !seed ? (
+            session.user.name.charAt(0).toUpperCase()
+          ) : (
+            seed?.charAt(0).toUpperCase()
+          )}
         </Avatar>
       ) : (
         <Avatar sx={{ width: 32, height: 32 }}>

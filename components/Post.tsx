@@ -138,7 +138,7 @@ function Post({ post }: Props) {
           ) : null}
 
           {/* Footer */}
-          <div className="flex space-x-4 text-green-400">
+          <div className="flex space-x-4 text-gray-400">
             <div className="postButtons">
               <ChatIcon className="h-6 w-6" />
               <p className="">{post.comments.length} Comments</p>
