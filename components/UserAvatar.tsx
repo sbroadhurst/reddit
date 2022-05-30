@@ -13,7 +13,10 @@ function UserAvatar({ seed, diameter }: Props) {
   return (
     <div>
       {session ? (
-        <Avatar sx={{ width: diameter, height: diameter }}>
+        <Avatar
+          sx={{ width: diameter, height: diameter }}
+          className="bg-gradient-to-r from-[#FF4500] to-[#ff440087]"
+        >
           {session.user?.image && !seed ? (
             <img src={session.user.image} alt="profile" />
           ) : session.user?.name && !seed ? (

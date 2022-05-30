@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {
   ChevronDownIcon,
@@ -40,18 +40,18 @@ const iconMenu = (
 
 function Header() {
   const { theme, setTheme } = useTheme()
+  const [logo, setLogo] = useState(lightLogo)
+
+  useEffect(() => {
+    theme === 'dark' ? setLogo(darkLogo) : setLogo(lightLogo)
+  }, [theme])
 
   return (
     <div className="sticky top-0 z-50 flex items-center px-4 py-2 shadow-lg shadow-[#FF4500]">
       <div className="relative h-10 w-20 flex-shrink-0 cursor-pointer">
         <Link href="/">
           <div className="navbar-brand">
-            <Image
-              priority
-              objectFit="contain"
-              src={theme === 'dark' ? darkLogo : lightLogo}
-              layout="fill"
-            />
+            <Image priority objectFit="contain" src={logo} layout="fill" />
           </div>
         </Link>
         {/* <Avatar sx={{ backgroundColor: '#FF4500', height: 32, width: 32 }}>
